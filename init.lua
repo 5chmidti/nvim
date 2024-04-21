@@ -113,7 +113,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
@@ -154,7 +154,7 @@ require('lazy').setup({
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
+      require('which-key').register({
         -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         -- ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
         -- ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
@@ -162,7 +162,7 @@ require('lazy').setup({
         -- ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         -- ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         -- ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-      }
+      })
       -- visual mode
       require('which-key').register({
         -- ['<leader>h'] = { 'Git [H]unk' },
@@ -204,7 +204,7 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup {
+      require('telescope').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
@@ -219,7 +219,7 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
         },
-      }
+      })
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
@@ -241,24 +241,24 @@ require('lazy').setup({
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
           winblend = 10,
           previewer = false,
-        })
+        }))
       end, { desc = '[/] Fuzzily search in current buffer' })
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
       vim.keymap.set('n', '<leader>s/', function()
-        builtin.live_grep {
+        builtin.live_grep({
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',
-        }
+        })
       end, { desc = '[S]earch [/] in Open Files' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
+        builtin.find_files({ cwd = vim.fn.stdpath 'config' })
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
@@ -381,8 +381,8 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local lspconfig = require('lspconfig')
-      lspconfig.clangd.setup { capabilities = capabilities }
-      lspconfig.lua_ls.setup {
+      lspconfig.clangd.setup({ capabilities = capabilities })
+      lspconfig.lua_ls.setup({
         -- cmd = {...},
         -- filetypes = { ...},
         capabilities = capabilities,
@@ -395,7 +395,7 @@ require('lazy').setup({
             -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
-      }
+      })
     end,
   },
 
@@ -406,7 +406,7 @@ require('lazy').setup({
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format({ async = true, lsp_fallback = true })
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -415,10 +415,10 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        return {
+        return ({
           timeout_ms = 500,
           lsp_fallback = true,
-        }
+        })
       end,
     },
   },
@@ -463,9 +463,9 @@ require('lazy').setup({
       -- See `:help cmp`
       local cmp = require('cmp')
       local luasnip = require('luasnip')
-      luasnip.config.setup {}
+      luasnip.config.setup({})
 
-      cmp.setup {
+      cmp.setup({
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -477,7 +477,7 @@ require('lazy').setup({
         -- chosen, you will need to read `:help ins-completion`
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert {
+        mapping = cmp.mapping.preset.insert({
           -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
@@ -490,12 +490,12 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
+          ['<C-Space>'] = cmp.mapping.complete({}),
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
@@ -518,13 +518,13 @@ require('lazy').setup({
 
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-        },
+        }),
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
         },
-      }
+      })
     end,
   },
 
@@ -558,7 +558,7 @@ require('lazy').setup({
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      require('mini.ai').setup({ n_lines = 500 })
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
@@ -572,7 +572,7 @@ require('lazy').setup({
       --  and try some other statusline plugin
       local statusline = require('mini.statusline')
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup({ use_icons = vim.g.have_nerd_font })
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
