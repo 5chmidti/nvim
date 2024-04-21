@@ -1,6 +1,5 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -127,9 +126,7 @@ vim.opt.rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
--- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   --  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   { 'numToStr/Comment.nvim',    opts = {} },
@@ -213,7 +210,7 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        -- pickers = { }
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -267,7 +264,6 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -282,11 +278,6 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself.
-          --
-          -- In this case, we create a function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
@@ -612,19 +603,6 @@ require('lazy').setup({
   --    end,
   --  },
   --
-  --  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  --  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  --  -- place them in the correct locations.
-  --
-  --  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --  --
-  --  -- require('kickstart.plugins.debug'),
-  --  -- require('kickstart.plugins.indent_line'),
-  --  -- require('kickstart.plugins.lint'),
-  --  -- require('kickstart.plugins.autopairs'),
-  --  -- require('kickstart.plugins.neo-tree'),
-  --  -- require('kickstart.plugins.gitsigns'), -- adds gitsigns recommend keymaps
-  --
   --  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --  --    This is the easiest way to modularize your config.
   --  --
@@ -632,25 +610,11 @@ require('lazy').setup({
   --  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   --  -- { import = 'custom.plugins' },
 }, {
-  --  ui = {
-  --    -- If you are using a Nerd Font: set icons to an empty table which will use the
-  --    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-  --    icons = vim.g.have_nerd_font and {} or {
-  --      cmd = '⌘',
-  --      config = '🛠',
-  --      event = '📅',
-  --      ft = '📂',
-  --      init = '⚙',
-  --      keys = '🗝',
-  --      plugin = '🔌',
-  --      runtime = '💻',
-  --      require = '🌙',
-  --      source = '📄',
-  --      start = '🚀',
-  --      task = '📌',
-  --      lazy = '💤 ',
-  --    },
-  --  },
+  ui = {
+    --    -- If you are using a Nerd Font: set icons to an empty table which will use the
+    --    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+    icons = vim.g.have_nerd_font and {} or {},
+  },
 })
 --
 ---- The line beneath this is called `modeline`. See `:help modeline`
