@@ -82,6 +82,15 @@ return {
                 })
             end, { desc = '[S]earch [/] in Open Files' })
 
+            vim.keymap.set('n', '<leader>s?', function()
+                builtin.live_grep({
+                    file_ignore_patterns = {
+                        "build",
+                    },
+                    prompt_title = 'Live Grep in all Files',
+                })
+            end, { desc = '[S]earch [?] in Open Files' })
+
             -- Shortcut for searching your Neovim configuration files
             vim.keymap.set('n', '<leader>sn', function()
                 builtin.find_files({ cwd = vim.fn.stdpath 'config' })
