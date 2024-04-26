@@ -37,11 +37,11 @@ return {
                 -- You can put your default mappings / updates / etc. in here
                 --  All the info you're looking for is in `:help telescope.setup()`
                 --
-                -- defaults = {
-                --   mappings = {
-                --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-                --   },
-                -- },
+                defaults = {
+                    file_ignore_patterns = {
+                        "build",
+                    },
+                },
                 -- pickers = { }
                 extensions = {
                     ['ui-select'] = {
@@ -84,9 +84,6 @@ return {
 
             vim.keymap.set('n', '<leader>s?', function()
                 builtin.live_grep({
-                    file_ignore_patterns = {
-                        "build",
-                    },
                     prompt_title = 'Live Grep in all Files',
                 })
             end, { desc = '[S]earch [?] in Open Files' })
