@@ -7,6 +7,7 @@ return {
             'nvim-lua/plenary.nvim',
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
             { 'nvim-telescope/telescope-ui-select.nvim' },
+            { 'debugloop/telescope-undo.nvim' },
 
             -- Useful for getting pretty icons, but requires a Nerd Font.
             { 'nvim-tree/nvim-web-devicons',              enabled = vim.g.have_nerd_font },
@@ -43,12 +44,16 @@ return {
                     ['ui-select'] = {
                         require('telescope.themes').get_dropdown(),
                     },
+                    ['undo'] = {
+                        side_by_side = true,
+                    },
                 },
             })
 
             -- Enable Telescope extensions if they are installed
             pcall(require('telescope').load_extension, 'fzf')
             pcall(require('telescope').load_extension, 'ui-select')
+            pcall(require('telescope').load_extension, 'undo')
 
             -- See `:help telescope.builtin`
             local builtin = require('telescope.builtin')
@@ -62,6 +67,7 @@ return {
             vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
             vim.keymap.set('n', '<leader>sR', builtin.registers, { desc = '[S]earch [R]esume' })
+            vim.keymap.set('n', '<leader>su', "<cmd>Telescope undo<cr>", { desc = '[S]earch [U]ndo' })
             vim.keymap.set('n', '<leader>s.', builtin.oldfiles,
                 { desc = '[S]earch Recent Files ("." for repeat)' })
             vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
