@@ -37,11 +37,7 @@ return {
                 -- You can put your default mappings / updates / etc. in here
                 --  All the info you're looking for is in `:help telescope.setup()`
                 --
-                defaults = {
-                    file_ignore_patterns = {
-                        "build",
-                    },
-                },
+                defaults = {},
                 -- pickers = { }
                 extensions = {
                     ['ui-select'] = {
