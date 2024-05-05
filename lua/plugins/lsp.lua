@@ -66,6 +66,9 @@ return {
                     --  See `:help K` for why this keymap.
                     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
+                    vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help,
+                        { buffer = event.buf, desc = 'Signature Help' })
+
                     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
                     -- The following two autocommands are used to highlight references of the
