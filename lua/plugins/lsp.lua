@@ -117,6 +117,7 @@ return {
             --    For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
             local lspconfig = require('lspconfig')
             lspconfig.clangd.setup({ capabilities = capabilities })
+            lspconfig.cmake.setup({})
             lspconfig.lua_ls.setup({
                 -- cmd = {...},
                 -- filetypes = { ...},
@@ -131,6 +132,7 @@ return {
                     },
                 },
             })
+            lspconfig.ruff.setup({})
         end,
     },
 
