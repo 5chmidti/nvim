@@ -35,6 +35,29 @@ return {
         end,
     },
 
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        },
+        config = function()
+            require('noice').setup({
+                routes = {
+                    {
+                        view = "notify",
+                        filter = { event = "msg_showmode" }
+                    }
+                }
+            })
+            vim.keymap.set('n', '<leader>nh', '<cmd>Noice history<cr>', { desc = '[N]oice [H]istory' })
+            vim.keymap.set('n', '<leader>nl', '<cmd>Noice last<cr>', { desc = '[N]oice [L]ast' })
+        end
+    },
+
     { -- You can easily change to a different colorscheme.
         -- Change the name of the colorscheme plugin below, and then
         -- change the command in the config to whatever the name of that colorscheme is.
