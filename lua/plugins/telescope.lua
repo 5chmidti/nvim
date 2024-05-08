@@ -63,7 +63,6 @@ return {
             vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
             vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
             vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-            vim.keymap.set('n', '<leader>sf', builtin.git_files, { desc = '[S]earch Git [F]iles' })
             vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
             vim.keymap.set('n', '<leader>sR', builtin.registers, { desc = '[S]earch [R]esume' })
@@ -75,6 +74,22 @@ return {
 
             vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find,
                 { desc = '[/] Fuzzily search in current buffer' })
+
+            is_inside_work_tree = {}
+            local function project_files()
+                local cwd = vim.fn.getcwd()
+                if is_inside_work_tree[cwd] == nil then
+                    vim.fn.system('git rev-parse --is-inside-work-tree')
+                    local res = vim.v.shell_error == 0
+                    is_inside_work_tree[cwd] = res
+                    if res then
+                        builtin.git_files({})
+                    else
+                        builtin.find_files({})
+                    end
+                end
+            end
+            vim.keymap.set('n', '<leader>sf', project_files, { desc = '[S]earch (Git) [F]iles' })
 
             -- It's also possible to pass additional configuration options.
             --  See `:help telescope.builtin.live_grep()` for information about particular keys
