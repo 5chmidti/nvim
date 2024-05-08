@@ -88,6 +88,11 @@ return {
                         builtin.find_files({})
                     end
                 end
+                if is_inside_work_tree[cwd] then
+                    builtin.git_files({})
+                else
+                    builtin.find_files({})
+                end
             end
             vim.keymap.set('n', '<leader>sf', project_files, { desc = '[S]earch (Git) [F]iles' })
 
