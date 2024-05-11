@@ -157,8 +157,29 @@ return {
             --  - settings (table): Override the default settings passed when initializing the server.
             --    For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
             local lspconfig = require('lspconfig')
-            lspconfig.clangd.setup({ capabilities = capabilities })
-            lspconfig.cmake.setup({})
+            lspconfig.clangd.setup({
+                capabilities = capabilities,
+                root_dir = function(fname)
+                    local util = require('lspconfig.util')
+                    local root_files = {
+                        '.clangd',
+                        '.clang-tidy',
+                        '.clang-format',
+                        'compile_commands.json',
+                        'compile_flags.txt',
+                        'configure.ac',
+                    }
+                    return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))
+                end,
+                on_new_config = function(new_config, new_root_dir)
+                    local comp_db = vim.fn.findfile('compile_commands.json', new_root_dir .. "/build")
+                    local comp_db_flag = "--compile-commands-dir=" .. vim.fn.fnamemodify(comp_db, ":p:h")
+                    new_config.cmd = { "clangd", comp_db_flag }
+                end
+            })
+            lspconfig.cmake.setup({
+                capabilities = capabilities,
+            })
             lspconfig.lua_ls.setup({
                 -- cmd = {...},
                 -- filetypes = { ...},
