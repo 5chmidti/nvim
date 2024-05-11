@@ -15,7 +15,6 @@ local function format_hunks()
 
     local function format_range()
         if next(hunks) == nil then
-            vim.notify("done formatting git hunks", "info", { title = "formatting" })
             return
         end
         local hunk = nil
