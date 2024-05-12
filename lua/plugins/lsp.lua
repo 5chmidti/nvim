@@ -194,7 +194,9 @@ return {
                     },
                 },
             })
-            lspconfig.ruff.setup({})
+            lspconfig.ruff.setup({
+                capabilities = capabilities,
+            })
         end,
     },
 
