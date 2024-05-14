@@ -197,6 +197,10 @@ return {
             lspconfig.ruff.setup({
                 capabilities = capabilities,
             })
+            lspconfig.nixd.setup({
+                cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
+                capabilities = capabilities,
+            })
         end,
     },
 
