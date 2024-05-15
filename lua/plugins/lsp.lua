@@ -196,6 +196,14 @@ return {
             })
             lspconfig.ruff.setup({
                 capabilities = capabilities,
+                settings = {
+                    lint = {
+                        select = { "ALL" }
+                    },
+                },
+            })
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
             })
             lspconfig.nixd.setup({
                 cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
