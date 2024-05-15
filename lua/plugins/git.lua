@@ -12,7 +12,7 @@ return {
             signcolumn = true,
             numhl = true,
             current_line_blame = true,
-            current_line_opts = {
+            current_line_blame_opts = {
                 delay = 0,
             },
             current_line_blame_formatter_opts = { relative_time = true, },
