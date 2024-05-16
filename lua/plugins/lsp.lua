@@ -298,13 +298,6 @@ return {
                     vim.cmd(':>')
                 end
             end
-            local function jump_back()
-                if luasnip.expand_or_locally_jumpable(-1) then
-                    luasnip.expand_or_jump(-1)
-                else
-                    vim.cmd(':<')
-                end
-            end
 
             cmp.setup({
                 snippet = {
@@ -333,7 +326,6 @@ return {
                     --  This will expand snippets if the LSP sent a snippet.
                     ['<C-y>'] = complete,
                     ['<Tab>'] = complete,
-                    ['<S-Tab>'] = jump_back,
 
                     -- Manually trigger a completion from nvim-cmp.
                     --  Generally you don't need this, because nvim-cmp will display
