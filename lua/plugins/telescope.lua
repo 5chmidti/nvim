@@ -77,17 +77,13 @@ return {
             is_inside_work_tree = {}
             local function project_files(opts)
                 local cwd = vim.fn.getcwd()
-                if is_inside_work_tree[cwd] == nil then
+                local val = is_inside_work_tree[cwd]
+                if val == nil then
                     vim.fn.system('git rev-parse --is-inside-work-tree')
-                    local res = vim.v.shell_error == 0
-                    is_inside_work_tree[cwd] = res
-                    if res then
-                        builtin.git_files(opts)
-                    else
-                        builtin.find_files(opts)
-                    end
+                    val = vim.v.shell_error == 0
+                    is_inside_work_tree[cwd] = val
                 end
-                if is_inside_work_tree[cwd] then
+                if val then
                     builtin.git_files(opts)
                 else
                     builtin.find_files(opts)
