@@ -169,7 +169,7 @@ return {
                         'compile_flags.txt',
                         'configure.ac',
                     }
-                    return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))
+                    return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))(fname)
                 end,
                 on_new_config = function(new_config, new_root_dir)
                     local comp_db = vim.fn.findfile('compile_commands.json', new_root_dir .. "/build/**2")
