@@ -215,15 +215,17 @@ return {
     { -- Autoformat
         'stevearc/conform.nvim',
         lazy = false,
-        opts = {
-            notify_on_error = false,
-            format_on_save = {
-                timeout_ms = 500,
-                lsp_fallback = true,
-            },
-        },
         config = function()
-            require('conform').setup()
+            require('conform').setup({
+                formatters_by_ft = {
+                    tex = { "latexindent" },
+                },
+                notify_on_error = false,
+                format_on_save = {
+                    timeout_ms = 500,
+                    lsp_fallback = true,
+                },
+            })
 
             local function format_mode()
                 local res = vim.fn.confirm('Format hunks? Currently: ' .. tostring(enable_format_hunk), '&Yes\n&No\nQuit',
