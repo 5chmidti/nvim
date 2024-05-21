@@ -75,22 +75,22 @@ return {
                 { desc = '[/] Fuzzily search in current buffer' })
 
             is_inside_work_tree = {}
-            local function project_files()
+            local function project_files(opts)
                 local cwd = vim.fn.getcwd()
                 if is_inside_work_tree[cwd] == nil then
                     vim.fn.system('git rev-parse --is-inside-work-tree')
                     local res = vim.v.shell_error == 0
                     is_inside_work_tree[cwd] = res
                     if res then
-                        builtin.git_files()
+                        builtin.git_files(opts)
                     else
-                        builtin.find_files()
+                        builtin.find_files(opts)
                     end
                 end
                 if is_inside_work_tree[cwd] then
-                    builtin.git_files()
+                    builtin.git_files(opts)
                 else
-                    builtin.find_files()
+                    builtin.find_files(opts)
                 end
             end
             vim.keymap.set('n', '<leader>sf', project_files, { desc = '[S]earch (Git) [F]iles' })
