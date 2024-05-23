@@ -112,7 +112,9 @@ return {
             end, { desc = '[S]earch [N]eovim files' })
 
             vim.keymap.set('n', '<leader>si', builtin.lsp_dynamic_workspace_symbols,
-                { desc = '[S]earch Workspace [I]dentifier' })
+                { desc = '[S]earch Workspace [I]dentifiers' })
+            vim.keymap.set('n', '<leader>sI', builtin.lsp_document_symbols,
+                { desc = '[S]earch Document [I]dentifiers' })
             vim.keymap.set('n', '<leader>sci', builtin.lsp_incoming_calls, { desc = '[S]earch [I]ncoming [C]alls' })
             vim.keymap.set('n', '<leader>sco', builtin.lsp_outgoing_calls, { desc = '[S]earch [O]utgoing [C]alls' })
         end,
