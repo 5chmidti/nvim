@@ -19,7 +19,7 @@ return {
             })
 
             vim.keymap.set('n', '<leader>nd', function()
-                require('neogen').generate()
+                require('neogen').generate({})
             end, { desc = '[N]eogen [D]ocument Code' })
         end
     }
