@@ -62,10 +62,6 @@ return {
                         function() vim.lsp.buf.code_action({ apply = false }) end,
                         { buffer = event.buf, desc = 'LSP: [C]ode [A]ction' })
 
-                    -- Opens a popup that displays documentation about the word under your cursor
-                    --  See `:help K` for why this keymap.
-                    map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
                     vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help,
                         { buffer = event.buf, desc = 'Signature Help' })
 
