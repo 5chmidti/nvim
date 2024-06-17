@@ -164,6 +164,17 @@ return {
                 cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
                 capabilities = capabilities,
             })
+            lspconfig.texlab.setup({
+                settings = {
+                },
+                on_new_config = function(new_config, new_root_dir)
+                    new_config.settings.build = {
+                        executable = 'ninja',
+                        args = { '-C', new_root_dir },
+                        onSave = true,
+                    }
+                end
+            })
         end,
     },
 
