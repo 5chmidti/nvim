@@ -166,6 +166,14 @@ return {
             })
             lspconfig.texlab.setup({
                 capabilities = capabilities,
+                on_init = function(client)
+                    if vim.fn.findfile('build.ninja', client.config.root_dir .. '/build/*') then
+                        client.config.settings.texlab.build.executable = 'ninja'
+                        client.config.settings.texlab.build.args = { '-C', client.config.root_dir .. '/build' }
+                        client.config.settings.texlab.build.onSave = true
+                        client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+                    end
+                end,
             })
         end,
     },
