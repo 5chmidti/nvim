@@ -166,6 +166,9 @@ return {
             })
             lspconfig.texlab.setup({
                 capabilities = capabilities,
+                settings = {
+                    texlab = { chktex = { onEdit = true, }, },
+                },
                 on_init = function(client)
                     if vim.fn.findfile('build.ninja', client.config.root_dir .. '/build/*') then
                         client.config.settings.texlab.build.executable = 'ninja'
