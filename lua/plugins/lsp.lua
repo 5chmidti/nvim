@@ -126,10 +126,10 @@ return {
                     }
                     return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))(fname)
                 end,
-                on_init = function(client)
-                    local comp_db = vim.fn.findfile('compile_commands.json', client.root_dir .. "/build/**2")
+                on_new_config = function(new_config, new_root_dir)
+                    local comp_db = vim.fn.findfile('compile_commands.json', new_root_dir .. "/build/**2")
                     local comp_db_flag = "--compile-commands-dir=" .. vim.fn.fnamemodify(comp_db, ":p:h")
-                    client.config.cmd = { "clangd", comp_db_flag }
+                    new_config.cmd = { "clangd", comp_db_flag }
                 end
             })
             lspconfig.cmake.setup({
