@@ -30,8 +30,8 @@ return {
             -- visual mode
             require('which-key').add({
                 mode = { "v" },
-                { "<leader>c",  group = "Code" },
-                { "<leader>h",  group = "Git [H]unk" },
+                { "<leader>c", group = "Code" },
+                { "<leader>h", group = "Git [H]unk" },
             })
         end,
     },
