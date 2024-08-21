@@ -15,7 +15,6 @@ return {
             current_line_blame_opts = {
                 delay = 0,
             },
-            current_line_blame_formatter_opts = { relative_time = true, },
             on_attach = function(bufnr)
                 local gitsigns = require('gitsigns')
 
