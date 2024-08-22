@@ -39,7 +39,9 @@ return {
             -- See `:help cmp`
             local cmp = require('cmp')
             local luasnip = require('luasnip')
-            luasnip.config.setup({})
+            luasnip.setup({
+                ft_function = require('luasnip.extras.filetype_functions').from_cursor_pos,
+            })
 
             cmp.setup({
                 snippet = {
