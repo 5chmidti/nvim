@@ -48,9 +48,10 @@ return {
                 formatters_by_ft = {
                 },
                 notify_on_error = false,
-                format_on_save = {
+                format_on_save = {},
+                default_format_opts = {
                     timeout_ms = 500,
-                    lsp_fallback = 'fallback',
+                    lsp_format = 'prefer',
                 },
             })
 
