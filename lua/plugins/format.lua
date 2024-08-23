@@ -46,6 +46,7 @@ return {
         config = function()
             require('conform').setup({
                 formatters_by_ft = {
+                    nix = { "nixfmt" },
                 },
                 notify_on_error = false,
                 format_on_save = {},
