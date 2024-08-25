@@ -4,6 +4,7 @@ return {
         config = function()
             local lint = require('lint')
             lint.linters_by_ft = {
+                lua = { "selene", },
             }
             vim.api.nvim_create_autocmd({ 'TextChanged', 'BufReadPost' }, {
                 callback = function() require('lint').try_lint() end,
