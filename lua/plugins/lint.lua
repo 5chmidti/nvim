@@ -6,9 +6,12 @@ return {
             lint.linters_by_ft = {
                 fish = { "fish", },
                 lua = { "selene", },
+                ['yaml.gha'] = { "actionlint", },
             }
-            vim.api.nvim_create_autocmd({ 'TextChanged', 'BufEnter' }, {
-                callback = function() require('lint').try_lint() end,
+            vim.api.nvim_create_autocmd({ 'TextChanged', 'BufReadPost' }, {
+                callback = function()
+                    require('lint').try_lint()
+                end,
             })
         end
     }
