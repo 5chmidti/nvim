@@ -74,7 +74,7 @@ return {
             vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find,
                 { desc = '[/] Fuzzily search in current buffer' })
 
-            is_inside_work_tree = {}
+            local is_inside_work_tree = {}
             local function project_files(opts)
                 local cwd = vim.fn.getcwd()
                 local val = is_inside_work_tree[cwd]
