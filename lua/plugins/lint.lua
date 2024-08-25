@@ -7,7 +7,7 @@ return {
                 fish = { "fish", },
                 lua = { "selene", },
             }
-            vim.api.nvim_create_autocmd({ 'TextChanged', 'BufReadPost' }, {
+            vim.api.nvim_create_autocmd({ 'TextChanged', 'BufEnter' }, {
                 callback = function() require('lint').try_lint() end,
             })
         end
