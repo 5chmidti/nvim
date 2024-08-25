@@ -9,7 +9,11 @@ return {
                 sh = { "shellcheck", },
                 ['yaml.gha'] = { "actionlint", },
             }
-            vim.api.nvim_create_autocmd({ 'TextChanged', 'BufReadPost' }, {
+            vim.api.nvim_create_autocmd({
+                'TextChanged',
+                'BufReadPost',
+                'BufWritePost',
+            }, {
                 callback = function()
                     require('lint').try_lint()
                 end,
