@@ -1,14 +1,11 @@
 local luasnip = require("luasnip")
+local extras = require("luasnip.extras")
 
 local s = luasnip.snippet
 local i = luasnip.insert_node
 local t = luasnip.text_node
 local f = luasnip.function_node
-
-
-local function clang_rav_visitor_node(args, _, _)
-    return args[1][1]
-end
+local rep = extras.rep
 
 --- Create a snippet for a Traverse/WalkUpFrom/Visit member
 ---@param kind string
@@ -36,9 +33,9 @@ luasnip.add_snippets("cpp", {
         t("class "),
         i(1, "Visitor"),
         t(" : public clang::RecursiveASTVisitor<"),
-        f(clang_rav_visitor_node, { 1 }),
+        rep(1),
         t({ "> {", "public:", "\tusing Base = clang::RecursiveASTVisitor<" }),
-        f(clang_rav_visitor_node, { 1 }),
+        rep(1),
         t({ ">;", "", "\t" }),
         i(2),
         t({ "", "};" })
