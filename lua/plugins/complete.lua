@@ -41,6 +41,7 @@ return {
             local luasnip = require('luasnip')
             luasnip.setup({
                 ft_function = require('luasnip.extras.filetype_functions').from_cursor_pos,
+                update_events = { "TextChanged", "TextChangedI", },
             })
 
             cmp.setup({
