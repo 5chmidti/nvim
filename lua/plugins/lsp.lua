@@ -166,8 +166,15 @@ return {
                                 "D107",
                             },
                         },
+                        ["target-version"] = "py312",
                     },
                 },
+                on_init = function(client)
+                    if client.config.root_dir:find("llvm") ~= nil then
+                        client.config.settings["target-version"] = "py38"
+                        client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+                    end
+                end
             })
             lspconfig.pyright.setup({
                 capabilities = capabilities,
