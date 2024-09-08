@@ -136,6 +136,7 @@ return {
             lspconfig.cmake.setup({
                 capabilities = capabilities,
             })
+            lspconfig.nil_ls.setup({})
             lspconfig.lua_ls.setup({
                 -- cmd = {...},
                 -- filetypes = { ...},
