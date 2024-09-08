@@ -167,6 +167,8 @@ return {
                                 "D105",
                                 "D106",
                                 "D107",
+                                -- using `print`
+                                "T201",
                             },
                         },
                         ["target-version"] = "py312",
