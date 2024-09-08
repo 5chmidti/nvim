@@ -136,6 +136,7 @@ return {
             lspconfig.cmake.setup({
                 capabilities = capabilities,
             })
+            lspconfig.harper_ls.setup({})
             lspconfig.nil_ls.setup({})
             lspconfig.lua_ls.setup({
                 -- cmd = {...},
