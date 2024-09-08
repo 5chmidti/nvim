@@ -158,6 +158,7 @@ return {
                         lint = {
                             select = { "ALL" },
                             ignore = {
+                                -- missing documentation
                                 "D100",
                                 "D101",
                                 "D102",
