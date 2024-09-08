@@ -48,8 +48,8 @@ return {
                 formatters_by_ft = {
                     nix = { "nixfmt" },
                 },
-                notify_on_error = false,
-                format_on_save = {},
+                notify_on_error     = true,
+                format_on_save      = {},
                 default_format_opts = {
                     timeout_ms = 500,
                     lsp_format = 'prefer',
@@ -70,7 +70,7 @@ return {
                 if enable_format_hunk then
                     format_hunks()
                 else
-                    require('conform').format({ async = true, lsp_fallback = true })
+                    require('conform').format({ async = false, })
                 end
             end
             vim.keymap.set('n', '<leader>F', format_mode, { desc = "[F]ormat mode" })
