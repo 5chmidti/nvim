@@ -175,6 +175,9 @@ return {
                     },
                 },
                 on_init = function(client)
+                    if client.config.root_dir == nil then
+                        return
+                    end
                     if client.config.root_dir:find("llvm") ~= nil then
                         client.config.settings["target-version"] = "py38"
                         client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
@@ -194,6 +197,9 @@ return {
                     texlab = { chktex = { onEdit = true, }, },
                 },
                 on_init = function(client)
+                    if client.config.root_dir == nil then
+                        return
+                    end
                     if vim.fn.findfile('build.ninja', client.config.root_dir .. '/build/*') then
                         client.config.settings.texlab.build.executable = 'ninja'
                         client.config.settings.texlab.build.args = { '-C', client.config.root_dir .. '/build' }
