@@ -172,6 +172,8 @@ return {
                                 "D107",
                                 -- using `print`
                                 "T201",
+                                -- usinf f-strings in log statements
+                                "G004",
                             },
                         },
                         ["target-version"] = "py312",
