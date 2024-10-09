@@ -120,14 +120,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile', }, {
-    callback = function()
-        vim.filetype.add({
-            pattern = {
-                ['.*/.github/workflows/.*%.yml'] = 'yaml.gha',
-            }
-        })
-    end
+vim.filetype.add({
+    filename = {
+        ['.gitlab-ci.yml'] = 'yaml.gitlab',
+    },
+    pattern = {
+        ['.*/.github/workflows/.*%.yml'] = 'yaml.gha',
+    }
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
