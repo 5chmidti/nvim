@@ -211,6 +211,9 @@ return {
                     end
                 end,
             })
+            lspconfig.yamlls.setup({
+                capabilities = capabilities,
+            })
         end,
     },
 
