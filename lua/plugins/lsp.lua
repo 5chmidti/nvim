@@ -189,6 +189,9 @@ return {
                     end
                 end
             })
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
+            })
             lspconfig.nixd.setup({
                 cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
                 capabilities = capabilities,
