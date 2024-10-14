@@ -193,6 +193,9 @@ return {
                 cmd = { "nixd", "--inlay-hints", "--semantic-tokens" },
                 capabilities = capabilities,
             })
+            lspconfig.superhtml.setup({
+                capabilities = capabilities,
+            })
             lspconfig.texlab.setup({
                 capabilities = capabilities,
                 settings = {
