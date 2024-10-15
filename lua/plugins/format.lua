@@ -45,8 +45,10 @@ return {
         lazy = false,
         config = function()
             require('conform').setup({
-                formatters_by_ft = {
-                    nix = { "nixfmt" },
+                formatters_by_ft    = {
+                    json = { "prettier", },
+                    nix = { "nixfmt", },
+                    yaml = { "prettier", },
                 },
                 notify_on_error     = true,
                 format_on_save      = {},
