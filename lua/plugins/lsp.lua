@@ -136,6 +136,12 @@ return {
             lspconfig.cmake.setup({
                 capabilities = capabilities,
             })
+            lspconfig.docker_compose_language_service.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.dockerls.setup({
+                capabilities = capabilities,
+            })
             lspconfig.gitlab_ci_ls.setup({
                 capabilities = capabilities,
             })
