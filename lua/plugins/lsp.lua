@@ -232,6 +232,16 @@ return {
             })
             lspconfig.yamlls.setup({
                 capabilities = capabilities,
+                settings = {
+                    yaml = {
+                        schemaStore = { enable = true, },
+                    },
+                    redhat = {
+                        telemetry = {
+                            enabled = false
+                        }
+                    }
+                },
             })
         end,
     },
