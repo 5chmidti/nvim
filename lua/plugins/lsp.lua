@@ -148,7 +148,9 @@ return {
             lspconfig.harper_ls.setup({
                 capabilities = capabilities,
             })
-            lspconfig.nil_ls.setup({})
+            lspconfig.nil_ls.setup({
+                capabilities = capabilities,
+            })
             lspconfig.lua_ls.setup({
                 -- cmd = {...},
                 -- filetypes = { ...},
