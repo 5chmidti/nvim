@@ -230,6 +230,9 @@ return {
                     end
                 end,
             })
+            lspconfig.vale_ls.setup({
+                capabilities = capabilities,
+            })
             lspconfig.yamlls.setup({
                 capabilities = capabilities,
                 settings = {
