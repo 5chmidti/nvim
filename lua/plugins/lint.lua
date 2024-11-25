@@ -8,6 +8,7 @@ return {
                 cmake = { "cmakelint", },
                 docker = { "hadolint", },
                 fish = { "fish", },
+                markdown = { "markdownlint-cli2", },
                 lua = { "selene", },
                 sh = { "shellcheck", },
                 ['yaml.gha'] = { "actionlint", },
