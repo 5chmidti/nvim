@@ -47,6 +47,7 @@ return {
             require('conform').setup({
                 formatters_by_ft    = {
                     json = { "prettier", },
+                    markdown = { "prettier", },
                     nix = { "nixfmt", },
                     yaml = { "prettier", },
                 },
