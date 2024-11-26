@@ -145,9 +145,9 @@ return {
             lspconfig.gitlab_ci_ls.setup({
                 capabilities = capabilities,
             })
-            lspconfig.harper_ls.setup({
-                capabilities = capabilities,
-            })
+            -- lspconfig.harper_ls.setup({
+            --     capabilities = capabilities,
+            -- })
             lspconfig.nil_ls.setup({
                 capabilities = capabilities,
             })
