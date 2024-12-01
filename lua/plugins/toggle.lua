@@ -18,7 +18,7 @@ return {
                 notify_on_set_default_option = true,
             })
             toggle.register("i", toggle.option.EnumOption({
-                name = "cland",
+                name = "clangd",
                 states = vim.tbl_extend("keep",
                     vim.fn.glob("$HOME/install/llvm*/bin/clangd", false, true),
                     vim.fn.glob("$HOME/dev/llvm-project/build/*/bin/clangd", false, true),
