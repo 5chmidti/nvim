@@ -20,6 +20,7 @@ return {
             toggle.register("i", toggle.option.EnumOption({
                 name = "clangd",
                 states = vim.tbl_extend("keep",
+                    { "clangd", "/etc/profiles/per-user/julian/bin/clangd", },
                     vim.fn.glob("$HOME/install/llvm*/bin/clangd", false, true),
                     vim.fn.glob("$HOME/dev/llvm-project/build/*/bin/clangd", false, true),
                     vim.fn.glob("$HOME/dev/llvm/*/build/*/bin/clangd", false, true)
