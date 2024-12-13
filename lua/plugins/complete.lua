@@ -44,6 +44,7 @@ return {
                 update_events = { "TextChanged", "TextChangedI", },
             })
 
+            require('luasnip.loaders.from_lua').load({})
             cmp.setup({
                 snippet = {
                     expand = function(args)
