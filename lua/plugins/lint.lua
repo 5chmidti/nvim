@@ -6,7 +6,7 @@ return {
             lint.linters.cmakelint.cmd = "cmake-lint"
             lint.linters_by_ft = {
                 cmake = { "cmakelint", },
-                docker = { "hadolint", },
+                dockerfile = { "hadolint", },
                 fish = { "fish", },
                 markdown = { "markdownlint-cli2", },
                 lua = { "selene", },
