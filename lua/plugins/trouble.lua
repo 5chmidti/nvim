@@ -10,6 +10,11 @@ return {
                         position = "right",
                     },
                 },
+                lsp = {
+                    win = {
+                        position = "right",
+                    },
+                },
                 lsp_document_symbols = {
                     win = {
                         position = "right",
