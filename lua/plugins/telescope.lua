@@ -47,6 +47,7 @@ return {
                     ['undo'] = {
                         side_by_side = true,
                     },
+                    fzf = {}
                 },
             })
 
