@@ -39,6 +39,31 @@ return {
                     end
                 end
             }))
+
+            local build_dir_option = toggle.option.EnumOption({
+                name = "clangd - build dir",
+                states = {},
+                get_state = function()
+                    vim.print("asdf")
+                    for _, client in pairs(vim.lsp.get_clients({ name = "clangd" })) do
+                        return client.config.cmd[2]
+                    end
+
+                    return nil
+                end,
+                set_state = function(c)
+                    for _, client in pairs(vim.lsp.get_clients({ name = "clangd" })) do
+                        client.config.cmd[2] = c
+                        require("lspconfig").clangd.launch()
+                    end
+                end
+            })
+            build_dir_option.get_available_states = function(self)
+                for _, client in ipairs(vim.lsp.get_clients({ name = "clangd" })) do
+                    return vim.fn.findfile('compile_commands.json', client.root_dir .. "/**2/build/**1", -1)
+                end
+            end
+            toggle.register("x", build_dir_option)
         end,
     },
 }
